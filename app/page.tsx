@@ -1,6 +1,17 @@
 import Image from 'next/image'
 
-export default function Home() {
+import {Tier} from 'tier';
+
+const tier = new Tier({
+  baseURL: process.env.TIER_BASE_URL as string,
+  apiKey: process.env.TIER_API_KEY,
+})
+
+export default async function Home() {
+
+  const data = await tier.pull()
+  console.log(data)
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
